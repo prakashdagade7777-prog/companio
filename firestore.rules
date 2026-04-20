@@ -1,0 +1,97 @@
+// firestore.rules
+// Deploy: firebase deploy --only firestore:rules
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helpers ────────────────────────────────────────
+    function isAuth()            { return request.auth != null; }
+    function isUser(uid)         { return isAuth() && request.auth.uid == uid; }
+    function getUserRole()       { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role; }
+    function isAdmin()           { return isAuth() && getUserRole() == 'admin'; }
+    function isCompanion()       { return isAuth() && getUserRole() == 'companion'; }
+    function isOwner(uid)        { return isAuth() && request.auth.uid == uid; }
+
+    // ── Users ───────────────────────────────────────────
+    match /users/{uid} {
+      allow read:   if isAuth();
+      allow create: if isOwner(uid);
+      allow update: if isOwner(uid) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ── Companions ──────────────────────────────────────
+    match /companions/{uid} {
+      allow read:   if true; // Public profiles
+      allow create: if isOwner(uid);
+      allow update: if isOwner(uid) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ── KYC (sensitive) ────────────────────────────────
+    match /kyc/{uid} {
+      allow read:   if isOwner(uid) || isAdmin();
+      allow create: if isOwner(uid);
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ── Bookings ────────────────────────────────────────
+    match /bookings/{bookingId} {
+      allow read:   if isAuth() && (
+        resource.data.userId == request.auth.uid ||
+        resource.data.companionId == request.auth.uid ||
+        isAdmin()
+      );
+      allow create: if isAuth();
+      allow update: if isAdmin() || (
+        isAuth() && resource.data.userId == request.auth.uid &&
+        request.resource.data.status == 'cancelled'
+      );
+      allow delete: if isAdmin();
+    }
+
+    // ── Payments ────────────────────────────────────────
+    match /payments/{paymentId} {
+      allow read:   if isAuth() && (
+        resource.data.userId == request.auth.uid || isAdmin()
+      );
+      allow create: if isAuth();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ── Reviews ─────────────────────────────────────────
+    match /reviews/{reviewId} {
+      allow read:   if true;
+      allow create: if isAuth();
+      allow update: if isAuth() && resource.data.userId == request.auth.uid;
+      allow delete: if isAdmin();
+    }
+
+    // ── Reports ─────────────────────────────────────────
+    match /reports/{reportId} {
+      allow read:   if isAdmin() || (isAuth() && resource.data.reportedBy == request.auth.uid);
+      allow create: if isAuth();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ── Messages ────────────────────────────────────────
+    match /messages/{chatId} {
+      allow read, write: if isAuth() && (
+        chatId.split('_')[0] == request.auth.uid ||
+        chatId.split('_')[1] == request.auth.uid ||
+        isAdmin()
+      );
+
+      match /msgs/{msgId} {
+        allow read:   if isAuth();
+        allow create: if isAuth();
+        allow update: if isAuth() && resource.data.senderId == request.auth.uid;
+        allow delete: if isAdmin();
+      }
+    }
+  }
+}

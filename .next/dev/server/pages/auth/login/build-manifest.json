@@ -1,0 +1,29 @@
+{
+  "devFiles": [],
+  "ampDevFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [],
+  "rootMainFiles": [],
+  "pages": {
+    "/auth/login": [
+      "static/chunks/0e81_next_dist_compiled_12h9bsp._.js",
+      "static/chunks/0e81_next_dist_shared_lib_0dbgtl_._.js",
+      "static/chunks/0e81_next_dist_client_0-aznwh._.js",
+      "static/chunks/0e81_next_dist_0oe3lig._.js",
+      "static/chunks/0e81_next_07e0jm.._.js",
+      "static/chunks/0e81_react_03ah7j3._.js",
+      "static/chunks/0e81_react-dom_cjs_react-dom_development_120gjmt.js",
+      "static/chunks/0e81_react-dom_0x26zd.._.js",
+      "static/chunks/0ak0_@firebase_auth_dist_esm2017_105m6m~._.js",
+      "static/chunks/0e81_@firebase_firestore_dist_index_esm2017_0-1gess.js",
+      "static/chunks/0e81_@firebase_storage_dist_index_esm2017_0-71yv-.js",
+      "static/chunks/0e81_react-icons_ri_index_mjs_0s8qbrq._.js",
+      "static/chunks/0e81_react-icons_lib_049qgtq._.js",
+      "static/chunks/0e81_0yq.sgr._.js",
+      "static/chunks/[root-of-the-server]__0_gs6fs._.js",
+      "static/chunks/Desktop_companio_pages_auth_login_jsx_07xvfw~._.js",
+      "static/chunks/turbopack-Desktop_companio_pages_auth_login_jsx_0_8tfv~._.js"
+    ]
+  },
+  "ampFirstPages": []
+}

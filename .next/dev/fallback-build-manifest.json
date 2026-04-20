@@ -1,0 +1,33 @@
+{
+  "pages": {
+    "/_app": [
+      "static/chunks/[root-of-the-server]__0s_4sfz._.js",
+      "static/chunks/0e81_next_dist_compiled_12h9bsp._.js",
+      "static/chunks/0e81_next_dist_shared_lib_0az08wu._.js",
+      "static/chunks/0e81_next_dist_client_0-aznwh._.js",
+      "static/chunks/0e81_next_dist_0oe3lig._.js",
+      "static/chunks/0e81_next_0qe-f_z._.js",
+      "static/chunks/0e81_react_03ah7j3._.js",
+      "static/chunks/0e81_react-dom_cjs_react-dom_development_120gjmt.js",
+      "static/chunks/0e81_react-dom_0x26zd.._.js",
+      "static/chunks/0ak0_@firebase_auth_dist_esm2017_105m6m~._.js",
+      "static/chunks/0e81_@firebase_firestore_dist_index_esm2017_0-1gess.js",
+      "static/chunks/0e81_@firebase_storage_dist_index_esm2017_0-71yv-.js",
+      "static/chunks/0e81_framer-motion_dist_es_10h4izt._.js",
+      "static/chunks/0e81_react-icons_ri_index_mjs_0s8qbrq._.js",
+      "static/chunks/0e81_react-icons_lib_049qgtq._.js",
+      "static/chunks/0e81_040cj3t._.js",
+      "static/chunks/Desktop_companio_0s_hh43._.css",
+      "static/chunks/Desktop_companio_pages__app_07xvfw~._.js",
+      "static/chunks/turbopack-Desktop_companio_pages__app_0i_ocg-._.js"
+    ]
+  },
+  "devFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [
+    "static/development/_buildManifest.js",
+    "static/development/_ssgManifest.js",
+    "static/development/_clientMiddlewareManifest.js"
+  ],
+  "rootMainFiles": []
+}
